@@ -1,0 +1,244 @@
+/* this main style*/
+//Variables color
+$main_color:#CA252B;
+$sconed_color:#ffffff;
+$black_color: #000000;
+$border_color: #CCCCCC;
+//Variables dirctions
+$right:right;
+$left:left;
+$top:top;
+$bottom:bottom;
+/*media query width */
+$break-small: 575px;
+$break-medium: 768px;
+$break-large: 992px;
+$break-xlarge: 993px;
+$max-width: max-width;
+$min-width: min-width;
+//positions
+$left:left;
+$right:right;
+/*this display*/
+$block:block;
+$inline:inline;
+/// Shorthand calc  width and hight
+@mixin calc($property, $expression) {
+    #{$property}: calc(#{$expression});
+}
+/// Shorthand mixin  border
+@mixin border($direction, $width, $style, $color) {
+    border-#{$direction}: $width $style $color;
+}
+/// Shorthand mixin  border-radius
+@mixin border-radius($radius) {
+    border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+}
+/// Shorthand mixin for offset positioning
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null) {
+    position: $position;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+@mixin first-child() {
+    &:first-of-type {
+        @content
+    }
+}
+@mixin last-child() {
+    &:last-of-type {
+        @content
+    }
+}
+/*general style*/
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+section {
+    margin: 1em 0;
+}
+
+input[type="search"] {
+    padding: 0rem 0.75rem !important;
+    border-radius: 0rem;
+    color: $black_color;
+    display: $block !important;
+    @include calc(width,100% !important);
+}
+
+/*navbar*/
+
+.search-icon {
+    @include position(absolute, $right: 6%);
+    color: $main_color;
+    @media screen and ($min-width: $break-large) {
+        @include position(absolute, $right:3%);
+    }
+    }
+
+
+.title h4 {
+    color: $main_color;
+    text-transform: uppercase;
+}
+
+/*top slider news*/
+
+#news {
+    .main-news {
+        display: $block;
+        @include calc(width,33%);
+        @include position(relative);
+        margin-left: -3px;
+
+        float: $right;
+        img {
+            @include calc(height,8em);
+            @include calc(width,100%);
+        }
+        i {
+            @include position(absolute, $bottom: 35%, $left: 3%);
+            z-index: 999;
+            @include border-radius(0);
+        }
+        span {
+            display: $inline !important;
+            @include position(absolute, $bottom: 0%, $left: 0%);
+            background: rgba(0, 0, 0, 0.5);
+            font-size: 1.2em;
+            font-weight: 600;
+            color: $sconed_color;
+            @include calc(height,auto);
+            @include calc(width,100%);
+            padding: .5em;
+        }
+        @include first-child() {
+            float: $left;
+            display: $block;
+            @include position(relative);
+            @include calc(width,66%);
+            img {
+                @include calc(height,16em);
+                @include calc(width,100%);
+            }
+            i {
+                @include position(absolute, $bottom: 20%, $left: 3%);
+                z-index: 999;
+                @include border-radius(0);
+            }
+            span {
+                display: $inline !important;
+                background: rgba(0, 0, 0, 0.5);
+                @include position(absolute, $bottom: 0%, $left: 0%);
+                font-size: 1.2em;
+                font-weight: 600;
+                color: $sconed_color;
+                @include calc(height,auto);
+                @include calc(width,100%);
+                padding: .5em;
+            }
+        }
+
+        }
+    }
+
+/*news egypt section*/
+
+#egypt-news #new {
+    @include border(top,2px,solid,#222);
+
+    #owl-demo {
+        .item {
+            img {
+                @include calc(height,12em);
+                @include calc(width,100%);
+                padding: 18px 4px;
+                width: 100%;
+                color: $sconed_color;
+                @include border-radius(3px);
+                text-align: center;
+            }
+            span {
+                @include position(absolute, $top: 70%, $left: 2%);
+                @include calc(width,97%);
+                color: $sconed_color;
+                background: rgba(0,0,0,.5);
+                padding: .5em;
+            }
+        }
+        .owl-next {
+            @include position(absolute, $bottom: 40%, $right: .2%);
+            i {
+                @include calc(height,2em);
+                @include calc(width,1.5em);
+                @include border-radius(50% 0 0 50%);
+                padding-left: .5em;
+                line-height: 2em;
+                background: $main_color;
+                color: $sconed_color;
+            }
+        }
+        .owl-prev {
+            @include position(absolute, $bottom: 40%, $left: .4%);
+            i {
+                @include calc(height,2em);
+                @include calc(width,1.5em);
+                @include border-radius(0 50% 50% 0);
+                padding-right: .5em;
+                line-height: 2em;
+                background: $main_color;
+                color: $sconed_color;
+            }
+        }
+    }
+}
+
+/*feature*/
+
+#features {
+    @include border(top,2px,solid,#222);
+    @include border(top,2px,solid,#222);
+
+}
+
+.feature {
+     img{
+         @include calc(height,15em);
+         @include calc(width,100%);
+         margin-bottom:1em;
+         @media screen and ($min-width: $break-small) {
+             margin:1em 0;
+         }
+     }
+}
+
+/*top 5 news*/
+
+#top-five {
+    @include border(top,2px,solid,#222);
+    ul li {
+        padding: .5em;
+        @include border($top,1px,solid,$border_color);
+        @include border($left,1px,solid,$border_color);
+        /*this part border*/
+        @include last-child(){
+            @include border($bottom,1px,solid,$border_color);
+        }
+            span {
+            background: $main_color;
+            color: $sconed_color;
+            padding: 0em .5em;
+        }
+    }
+}
